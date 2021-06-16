@@ -82,7 +82,7 @@ body {
   margin-bottom: 25%;
 }
 
-img {
+.row-avatar {
   border-radius: 50%;
   width: 50%;
   display: block;
@@ -108,4 +108,11 @@ img {
 .fa-twitter {
   background: #55ACEE;
   color: white;
+}
+
+.showcase-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
