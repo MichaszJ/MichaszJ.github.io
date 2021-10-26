@@ -1,6 +1,12 @@
 body {
   font-family: Inter !important;
   font-size: 13pt !important;
+  background-color: rgb(25, 27, 28) !important;
+  color: rgb(210, 205, 197) !important;
+}
+
+a {
+  color: rgb(110, 174, 224) !important;
 }
 
 .banner-text {
