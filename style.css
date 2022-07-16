@@ -134,3 +134,22 @@ code {
   margin-right: auto;
   width: 70%;
 }
+
+.flex-gallery {
+  display: flex;
+}
+
+.card {
+  /* width: 25% !important; */
+  margin: 5px;
+  flex: 1;
+  padding: 10px;
+  border: 2px solid rgb(102, 110, 114);
+  border-radius: 10px;
+  background-color: rgb(43, 47, 49);
+}
+
+.card-img-top {
+  width: 100%;
+  /* height: 25%; */
+}
