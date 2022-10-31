@@ -1,334 +1,67 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="style.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <title>Michal's Homepage</title>
+</head>
+<body>
+  <div class="menu">
+    <a href="https://twitter.com/astra_kawa">Twitter</a>
+    <a href="https://github.com/MichaszJ">GitHub</a>
+    <a href="https://www.linkedin.com/in/michal-jagodzinski-6860201aa/">LinkedIn</a>
+    <a href="https://michaszj.substack.com/">Substack</a>
+    <a href="https://mastodon.social/@AstraKawa">Mastodon</a>
+  </div>
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,100;1,400&display=swap" rel="stylesheet">
-        
-    </head>
-
-    <div class="banner">
-        <div class="banner-text">
-            <h1 style="font-weight: 100; letter-spacing: 0.2em;">Michal Jagodzinski</h1>
-            <h3 style="font-weight: 100"><i>🚀 per aspera ad astra✨</i></h3>
-        </div>
+  <div class="top-block">
+    <div>
+      <p id="title">Michal Jagodzinski</p>
+      <p id="subtitle">New Grad, Python Developer at <a href="https://www.formify.ca/">Formify</a></p>
     </div>
 
-    <body>
-        <br>
+    <img src="https://pbs.twimg.com/profile_images/1586919650981552129/NyDohL-S_400x400.jpg" alt="">
+   
+  </div>
 
-        <hr style="width:80%; border-width: 3px; margin-top: 0%; margin-bottom: 0%; border-top-color: rgb(56, 60, 62) !important;">
+  <div class="info-block">
+    <p>Hello! I am a new graduate from the aerospace engineering program at Toronto Metropolitan University.</p>
 
-        <div class="container">
-            <div class="row row-links">
-                <div class="col-sm-7">
-                    <img src="https://avatars3.githubusercontent.com/u/24280317?s=460&u=fcb36c1d5349239a39f39b14a364dc5876ca6cdb&v=4" class = "row-avatar">
-                </div>
-                
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://michaszj.github.io/resumes.html">Resumes</a>
-                    </div>
-                </div>
+    <p>I'm currently looking for work in the aerospace and software industries in Ontario, as well as looking into doing a MEng or MASc in the spacecraft GN&C field.</p>
+  </div>
 
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://www.linkedin.com/in/michal-jagodzinski-6860201aa/">LinkedIn</a>
-                    </div>
-                </div>
+  <div class="project-block">
+    <p id="projects-title">Featured Projects</p>
+    <div class="project-row">
+      <a class="project-card" href="https://github.com/MichaszJ/orbit-tool">
+        <img src="./images/card1.png" alt="">
+        <p class="card-title">Personal Project: Orbit Tool</p>
+        <p class="card-description">Web app written in Python using Streamlit Allows for the simulation and plotting of various types of orbits (two-body, three-body, circular-restricted three-body, etc.) by using the Runge-Kutta-Fehlberg ODE solver. Also includes functionality to calculate and plot ground tracks of satellite orbits based on orbital parameters.</p>
+      </a>
 
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://github.com/MichaszJ">GitHub</a>
-                    </div>
-                </div>
+      <a class="project-card" href="https://github.com/MichaszJ/capstone-work">
+        <img src="./images/card2.png" alt="">
+        <p class="card-title">Course Project: Capstone Kickstage Spacecraft Project</p>
+        <p class="card-description">Final year university project involving the design and testing of a kickstage spacecraft for payload deployment in low-Earth orbit. Responsibilities included designing and simulating the attitude control system, writing tooling for simulating the spacecraft's orbits, and consulting with other technical teams involved with the overall project.</p>
+      </a>
+    </div>
 
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href = "https://twitter.com/astra_kawa">Twitter</href>
-                    </div>
-                </div>
+    <div class="project-row">
+      <a class="project-card" href="https://github.com/MichaszJ/capstone-work">
+        <img src="./images/card3.png" alt="">
+        <p class="card-title">Personal Project: Simple NN Framework</p>
+        <p class="card-description">A simple neural network framework written in Julia that uses reverse-mode auto-differentiation implemented by Zygote.jl. Inspired by PyTorch and tinygrad.</p>
+      </a>
 
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://www.instagram.com/michalj_photo/">Instagram</a>
-                    </div>
-                </div>
-
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://michaszj.substack.com/">Blog</a>
-                    </div>
-                </div>
-
-                <div class="col-sm-7">
-                    <div class="link-text">
-                        <a href="https://michal-jagodzinski.darkroom.tech/">Prints</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <hr style="width:80%; border-width: 3px; margin-top: 0%; margin-bottom: 0%; border-top-color: rgb(56, 60, 62) !important;">
-
-        <div class="container">
-            <div class="row row-info">
-                <div class="col-md-10">
-                    <h2>What I'm Working On</h2>
-                    <ul>
-                        <li>Looking for work in the aerospace and software engineering industry in Ontario</li>
-                        <li>Self-studying web development using <a href="https://www.theodinproject.com/">The Odin Project</a> and other free resources</li>
-                        <li>Working on a blog/newsletter on applying engineering simulation and modeling: <a href="https://michaszj.substack.com/">Star Coffee</a></li>
-                        <li>Working on small software projects (see my <a href="https://github.com/MichaszJ">GitHub</a>)</li>
-                        <li>Volunteering and writing Python for <a href="https://www.formify.ca/">Formify</a></li>
-                        <li>Writing and researching for my upcoming podcast, <i>Out of the Ordinary</i></li>
-                        <li>Working on my photography</li>
-                    </ul>
-                </div>
-                <div class="col-md-5">
-                    <h2>What I'm Interested In</h2>
-                    <ul>
-                        <li>Aerospace engineering</li>
-                        <li>Programming</li>
-                        <li>Simulations, CAD, and CFD</li>
-                        <li>Data science and data visualization</li>
-                        <li>Personal knowledge management, tools for thought</li>
-                        <li>Photography</li>
-                        <li>Hiking</li>
-                        <li>3D Art</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <hr style="width:80%; border-width: 3px; margin-top: 0%; margin-bottom: 0%; border-top-color: rgb(56, 60, 62) !important;">
-
-        <br>
-        <div class="container">
-            <h2>Projects</h2>
-
-            <div class="flex-gallery">
-                <div class="card">
-                    <img src="images/card1.png" class="card-img-top">
-                    <div class="card-body">
-                      <h3 class="card-title">Personal Project: Orbit Tool</h3>
-                      <p class="card-text">Web app written in Python using <a href="https://streamlit.io/">Streamlit</a>. Allows for the simulation and plotting of various types of orbits (two-body, three-body, circular-restricted three-body, etc.) by using the Runge-Kutta-Fehlberg ODE solver. Also includes functionality to calculate and plot ground tracks of satellite orbits based on orbital parameters.</p>
-                    </div>
-                    <div class="card-body">
-                      <a href="https://github.com/MichaszJ/orbit-tool" class="card-link">Link</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="images/card2.png" class="card-img-top">
-                    <div class="card-body">
-                      <h3 class="card-title">Course Project: Kickstage Spacecraft Attitude and Orbital Control System Design</h3>
-                      <p class="card-text">Final year university project involving the design and testing of a kickstage
-                        spacecraft for payload deployment in low-Earth orbit. Responsibilities included designing and simulating the
-                        attitude control system, writing tooling for simulating the spacecraft's orbits, and consulting with other technical teams involved with the overall project.</p>
-                    </div>
-                    <div class="card-body">
-                      <a href="https://github.com/MichaszJ/capstone-work" class="card-link">Link</a>
-                    </div>
-                </div>
-    
-            </div>
-
-            <div class="flex-gallery">
-                <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">Personal Project: Simple NN Framework</h4>
-                      <p class="card-text">A simple neural network framework written in Julia that uses reverse-mode auto-differentiation implemented by Zygote.jl. Inspired by <a href="https://pytorch.org/">PyTorch</a> and <a href="https://github.com/geohot/tinygrad">tinygrad</a>.</p>
-                    </div>
-                    <div class="card-body">
-                      <a href="https://github.com/MichaszJ/simple_nn" class="card-link">Link</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">Course Project: Aerial Thermography System</h4>
-                      <p class="card-text">Fourth year systems engineering course project. Involved the design and
-                        manufacturing of an infrared mapping system intended to be mounted to a drone. Responsibilities included design and assembly of electronics and writing the flight controller and ground-station analysis software.</p>
-                    </div>
-                    <div class="card-body">
-                      <a href="https://github.com/MichaszJ/aerial-thermography-system" class="card-link">Link</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                      <h4 class="card-title">Course Project: Composite Glider Design Project</h4>
-                      <p class="card-text">Third year materials and manufacturing course group project. This project involved creating a light-weight design through material selection and detailed documentation on manufacturing. Responsibilities included basic stress analysis used for material selection, modelling in CATIA, writing the design report, and creation of renders in Blender for the design report.</p>
-                    </div>
-                    <!-- <div class="card-body">
-                      <a href="https://github.com/MichaszJ/aerial-thermography-system" class="card-link">Link</a>
-                    </div> -->
-                </div>
-            </div>
-
-            <!-- <li>Personal Project: <a href="https://github.com/MichaszJ/orbit-tool">Spacecraft Orbit Simulator</a></li>
-            <li>Personal Project: <a href="https://github.com/MichaszJ/simple_nn">Simple Neural Network Framework</a></li>
-            <li>Course Project: Final Year Capstone - <a href="https://github.com/MichaszJ/capstone-work">Kickstage Spacecraft Orbit and Attitude Control System Design</a></li>
-            <li>Course Project: <a href="https://github.com/MichaszJ/aerial-thermography-system">Aerial Thermography System</a></li>
-            <li>Course Project: Aerospace Structures Project (Oleopneumatic Strut and Wingbox)</li>
-            <li>Course Project: Ultralight Aircraft Landing Gear</li> 
-            <li>Course Project: Composite Material Glider Design</li>
-            <li>Course Project: Fowler Flap Deployment Mechanism Design</li>
-            <li>Course Project: Walking Robot Design</li>
-            <li>Course Project: Arduino-Controlled Hydroponics Garden and Sun Tracker</li> -->
-        </div>
-
-
-        <!-- <br>
-        <div class="container">
-            <h1>Showcase</h1>
-        </div>
-
-        <div class="container" id="docs">
-            <h3>Personal Scripts Documentation</h3>
-            <p>All of my code can be found at: <a href="https://github.com/MichaszJ/scripts">MichaszJ/scripts</a></p>
-            <p>Please note that a lot of this is now out of date and has not been updated recently, I've been focused on school and writing a lot more code, but I plan to make showcases for it all at some point.</p>
-            <ul>
-                <li><a href="https://michaszj.github.io/docs/aerodynamics-doc.html">Aerodynamics</a></li>
-                <li><a href="https://michaszj.github.io/docs/gas-dynamics-doc.html">Gas dynamics</a></li>
-                <li>Numerical Methods</li>
-                <ul>
-                    <li><a href="https://michaszj.github.io/docs/numerical-methods-python-doc.html">ODE Solvers - Python Implementation</a></li>
-                    <li><a href="https://michaszj.github.io/docs/numerical-methods-julia-doc.html">ODE Solvers - Julia Implementation</a></li>
-                    <li><a href="https://michaszj.github.io/docs/optimization-doc.html">Optimization</a></li>
-                </ul>
-                <li>Aerospace</li>
-                <ul>
-                    <li><a href="https://michaszj.github.io/docs/orbital-dynamics-python-doc.html">Orbital Dynamics - Python Implementation</a></li>
-                    <li><a href="https://michaszj.github.io/docs/orbital-dynamics-julia-doc.html">Orbital Dynamics - Julia Implementation</a></li>
-                    <li><a href="https://michaszj.github.io/docs/rocket-dynamics-doc.html">Rocket Dynamics</a></li>  
-                </ul>
-            </ul>
-        </div>
-
-        <div class="container">
-            <h3>Animations and Visualizations</h3>
-        </div>
-
-        <div class="container">
-            <p>Sample of ADCS simulation for capstone project:</p>
-        </div>
-
-        <a id="capstone-vis">
-            <img src="images/sat_orbit_final.gif" class="showcase-image2"/>
-        </a>
-
-        <div class="container">
-            <p>Variable supersonic inlet geometry for optimal pressure recovery:</p>
-        </div>
-
-        <a id="variable-inlet">
-            <img src="images/variable_inlet_geom.gif" class="showcase-image"/>
-        </a>
-
-        <div class="container">
-            <p>Orbital elements:</p>
-        </div>
-
-        <a id="orbit-elements-gif">
-            <img src="images/orbital_parameters.gif" class="showcase-image"/>
-        </a>
-
-        <br><br><br>
-
-        <div class="container">
-            <p>Animation of cube-sat panel normals (dashed blue line is -x direction) and orbit:</p>
-        </div>
-
-        <a id="sat-axes-gif">
-            <img src="images/axes_gif.gif" class="showcase-image2"/>
-        </a>
-
-        <br><br><br>
-
-        <div class="container">
-            <p>Animation of SSTO launch and orbit:</p>
-        </div>
-        <br>
-        <a id="rocket-launch-gif">
-            <img src="images/rocket-launch.gif" class="showcase-image"/>
-        </a>
-
-        <br><br><br>
-
-        <div class="container">
-            <p>Animation of rendezvous of two spacecraft, using <code>Plots.jl</code>:</p>
-        </div>
-
-        <br>
-         
-        <a id="rendezvous-gif">
-            <img src="images/rendezvous2.gif" class="showcase-image"/>
-        </a>
-        <br>
-        <div class="container">
-            <p>Using <code>matplotlib.pyplot</code>:</p>
-        </div>
-        <br>
-        <a>
-            <img src="images/rendezvous.gif" class="showcase-image"/>
-        </a>
-
-
-        <div class="container">
-            <h3>Photography</h3>
-        </div>
-        <a data-flickr-embed="true" href="https://www.flickr.com/photos/143558603@N04/51796172940/in/dateposted-public/lightbox/" title="IMG_4937"><img src="https://live.staticflickr.com/65535/51796172940_4b25f5edc6_o.jpg" width=50% height=50% class="showcase-image"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-        <br>
-
-        <hr style="width:80%; border-width: 3px; margin-top: 0%; margin-bottom: 0%; border-top-color: rgb(56, 60, 62) !important;"> -->
-
-
-        <!-- <div class="container">
-            <div class="row row-info">
-                <div class="col-md-10">
-                    <h3>What I've Worked On</h3>
-                    <ul>
-                        <li>Personal Project: <a href="https://nbviewer.jupyter.org/github/MichaszJ/python-beam-FEA/blob/master/beam-deflection.ipynb">Python FEA Beam Deflection Solver</a></li>
-                        <li>Personal Project: <a href="https://github.com/MichaszJ/orbit-tool">Spacecraft Orbit Simulator</a></li>
-                        <li>Course Project: Aerospace Structures Project (Oleopneumatic Strut and Wingbox)</li>
-                        <li>Course Project: Ultralight Aircraft Landing Gear</li> 
-                        <li>Course Project: Composite Material Glider Design</li>
-                        <li>Course Project: Fowler Flap Deployment Mechanism Design</li>
-                        <li>Course Project: Walking Robot Design</li>
-                        <li>Course Project: Arduino-Controlled Hydroponics Garden and Sun Tracker</li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5">
-                    <h3>What I Want to Work On</h3>
-                    <ul>
-                        <li>Guidance, Navigation, Control</li>
-                        <li>Trajectory determination/optimization</li>
-                        <li>Viable SSTO spacecraft</li>
-                        <li>Asteroid capture and mining</li>
-                        <li>Zero-g manufacturing</li>
-                        <li>Rocket engines with dynamic geometry</li>
-                        <li>Data science/analytics in general (with applications to aerospace engineering)</li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
-
-        <hr style="width:80%; border-width: 3px; margin-top: 0%; margin-bottom: 0%; border-top-color: rgb(56, 60, 62) !important;">
-
-        <br>
-        <div class="banner3"></div>
-        <br>
-
-    </body>
+      <a class="project-card" href="https://github.com/MichaszJ/capstone-work">
+        <img src="./images/card4.png" alt="">
+        <p class="card-title">Course Project: Aerial Thermography System</p>
+        <p class="card-description">Fourth year systems engineering course project. Involved the design and manufacturing of an infrared mapping system intended to be mounted to a drone. Responsibilities included design and assembly of electronics and writing the flight controller and ground-station analysis software.</p>
+      </a>
+    </div>
+  </div>
+</body>
 </html>
