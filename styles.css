@@ -167,11 +167,10 @@ p a {
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 300;
 }
 
 .card-description {
-  font-size: 1.25rem;
-  font-weight: 200;
+  font-weight: 300;
 }
