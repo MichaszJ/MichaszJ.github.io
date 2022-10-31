@@ -30,6 +30,12 @@ body {
   }
 }
 
+#top {
+  text-align: center;
+  font-size: 5rem;
+  margin: 0;
+}
+
 #title {
   font-size: 3rem;
   font-weight: 300;
