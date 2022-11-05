@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Michal Jagodzinski">
+
+<title>simple_nn Demo</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="simple-nn_files/libs/clipboard/clipboard.min.js"></script>
+<script src="simple-nn_files/libs/quarto-html/quarto.js"></script>
+<script src="simple-nn_files/libs/quarto-html/popper.min.js"></script>
+<script src="simple-nn_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="simple-nn_files/libs/quarto-html/anchor.min.js"></script>
+<link href="simple-nn_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="simple-nn_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="simple-nn_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="simple-nn_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="simple-nn_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><code>simple_nn</code> Demo</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Michal Jagodzinski </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">Distributions</span>, <span class="bu">Plots</span>, <span class="bu">Random</span>, <span class="bu">Zygote</span>, <span class="bu">MLDatasets</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"/Users/michal/Code/simple_nn/simple_nn.jl"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">69420</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>simple_nn</code> is a simple neural network framework that allows users to quickly define their network architecture and write their own loss functions and training methods. The source code for this framework can be found at <a href="https://github.com/MichaszJ/simple_nn">MichaszJ/simple_nn</a>.</p>
+<section id="xor-problem" class="level1">
+<h1>XOR Problem</h1>
+<p>A simple example of using this library is to solve the XOR problem.</p>
+<p>Defining data and targets:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">1.0</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> [</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>, <span class="fl">1.0</span>]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Defining network and training optimizer:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xor_setup <span class="op">=</span> [</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">2</span>, <span class="fl">2</span>), dense_layer, sigmoid_activation),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">2</span>, <span class="fl">2</span>), dense_layer, sigmoid_activation)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>xor_net <span class="op">=</span> <span class="fu">CreateNetwork</span>(xor_setup, datatype<span class="op">=</span><span class="dt">Float32</span>, init_distribution<span class="op">=</span><span class="fu">Normal</span>())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">OptimizerSetup!</span>(xor_net, GradientDescentOptimizer!, learning_rate<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>Dict{String, Any} with 3 entries:
+  "optimizer"      =&gt; GradientDescentOptimizer!
+  "optimizer_name" =&gt; "GradientDescentOptimizer!"
+  "learning_rate"  =&gt; 0.01</code></pre>
+</div>
+</div>
+<p>Training routine:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="fl">250</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>losses <span class="op">=</span> []</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cross_entropy_loss</span>(x_in, y_val) <span class="op">=</span> <span class="fu">-sum</span>(y_val <span class="op">.*</span> <span class="fu">log</span>.(<span class="fu">Forward</span>(xor_net, x_in)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>epochs</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i, input) <span class="kw">in</span> <span class="fu">enumerate</span>(data)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        x_in <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, input)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        y_val <span class="op">=</span> targets[i]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="fu">Forward</span>(xor_net, x_in)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> <span class="fu">cross_entropy_loss</span>(x_in, y_val)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Backward!</span>(xor_net, cross_entropy_loss, x_in, y_val)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> epoch <span class="op">%</span> <span class="fl">50</span> <span class="op">==</span> <span class="fl">0</span> <span class="op">&amp;&amp;</span> i <span class="op">==</span> <span class="fu">length</span>(targets)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">println</span>(<span class="st">"Epoch </span><span class="sc">$</span>epoch<span class="sc">\t</span><span class="st">Pred: </span><span class="sc">$</span>(<span class="fu">round</span>(<span class="fu">maximum</span>(pred), digits<span class="op">=</span><span class="fl">4</span>))<span class="sc">\t</span><span class="st">Target: </span><span class="sc">$</span>(<span class="fu">maximum</span>(y_val))<span class="sc">\t</span><span class="st">loss: </span><span class="sc">$</span>(<span class="fu">round</span>(loss, digits<span class="op">=</span><span class="fl">4</span>))<span class="st">"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(losses, loss)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> <span class="fu">round</span>.(<span class="fu">maximum</span>.([<span class="fu">Forward</span>(xor_net, <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, x)) for x <span class="kw">in</span> data]))</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>passed <span class="op">=</span> preds <span class="op">.==</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, <span class="fu">maximum</span>.(targets))</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"</span><span class="sc">\n$</span>(<span class="fu">sum</span>(passed))<span class="st">/4 tests passed | Accuracy </span><span class="sc">$</span>(<span class="fl">100</span> <span class="op">*</span> <span class="fu">sum</span>(passed) <span class="op">/</span> <span class="fu">length</span>(targets))<span class="st">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Epoch 50    Pred: 0.6136    Target: 1.0 loss: 0.7241
+Epoch 100   Pred: 0.7266    Target: 1.0 loss: 0.4732
+Epoch 150   Pred: 0.8019    Target: 1.0 loss: 0.3314
+Epoch 200   Pred: 0.8514    Target: 1.0 loss: 0.2458
+Epoch 250   Pred: 0.8847    Target: 1.0 loss: 0.1907
+
+4/4 tests passed | Accuracy 100.0%</code></pre>
+</div>
+</div>
+<p>Loss over time:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(losses, xlabel<span class="op">=</span><span class="st">"Epoch"</span>, ylabel<span class="op">=</span><span class="st">"Cross-Entropy Loss"</span>, label<span class="op">=</span><span class="st">""</span>, size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<p><img src="simple-nn_files/figure-html/cell-6-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="comparing-optimizers" class="level1">
+<h1>Comparing Optimizers</h1>
+<p><code>simple_nn</code> has several training optimizers defined, with a simple interface to allow users to implement their own optimizers:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>optimizers <span class="op">=</span> [</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    GradientDescentOptimizer!, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    MomentumOptimizer!, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    RMSpropOptimizer!,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    AdamOptimizer!</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>xor_networks <span class="op">=</span> [<span class="fu">CreateNetwork</span>(xor_setup, datatype<span class="op">=</span><span class="dt">Float32</span>, init_distribution<span class="op">=</span><span class="fu">Normal</span>()) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(optimizers)]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i, opt) <span class="kw">in</span> <span class="fu">enumerate</span>(optimizers)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">OptimizerSetup!</span>(xor_networks[i], opt)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> []</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>losses <span class="op">=</span> []</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>loss_funcs <span class="op">=</span> [</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    (x_in, y_val) <span class="op">-&gt;</span> <span class="fu">-sum</span>(y_val <span class="op">.*</span> <span class="fu">log</span>.(<span class="fu">Forward</span>(net, x_in))) for net <span class="kw">in</span> xor_networks</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>epochs</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i, input) <span class="kw">in</span> <span class="fu">enumerate</span>(data)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        x_in <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, input)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        y_val <span class="op">=</span> targets[i]</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> []</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(optimizers)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(loss, loss_funcs[i](x_in, y_val))</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>            <span class="fu">Backward!</span>(xor_networks[i], loss_funcs[i], x_in, y_val)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(losses, loss)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>loss_gd <span class="op">=</span> [loss[<span class="fl">1</span>] for loss <span class="kw">in</span> losses]</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>loss_mgd <span class="op">=</span> [loss[<span class="fl">2</span>] for loss <span class="kw">in</span> losses]</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>loss_rms <span class="op">=</span> [loss[<span class="fl">3</span>] for loss <span class="kw">in</span> losses]</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>loss_adam <span class="op">=</span> [loss[<span class="fl">4</span>] for loss <span class="kw">in</span> losses]</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(loss_gd, xlabel<span class="op">=</span><span class="st">"Epoch"</span>, ylabel<span class="op">=</span><span class="st">"Cross-Entropy Loss"</span>, label<span class="op">=</span><span class="st">"Gradient Descent"</span>, size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">500</span>))</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(loss_mgd, label<span class="op">=</span><span class="st">"Momentum"</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(loss_rms, label<span class="op">=</span><span class="st">"RMSprop"</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(loss_adam, label<span class="op">=</span><span class="st">"ADAM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<p><img src="simple-nn_files/figure-html/cell-7-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="mnist" class="level1">
+<h1>MNIST</h1>
+<p>A more real-world example is the classification of handwritten digits, using the MNIST dataset:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_x, train_y <span class="op">=</span> MNIST.<span class="fu">traindata</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>train_x <span class="op">=</span> <span class="fu">Float32</span>.(train_x)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>test_x, test_y <span class="op">=</span> MNIST.<span class="fu">testdata</span>()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>test_x <span class="op">=</span> <span class="fu">Float32</span>.(test_x);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Defining some helper functions:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flatten</span>(matrix) <span class="op">=</span> <span class="fu">vcat</span>(matrix<span class="op">...</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">one_hot_encoding</span>(target)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">Float32</span>.(target <span class="op">.==</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">9</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>one_hot_encoding (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Defining the MNIST network and optimizer:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mnist_network <span class="op">=</span> <span class="fu">CreateNetwork</span>([</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">784</span>, <span class="fl">128</span>), dense_layer, sigmoid_activation),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">128</span>, <span class="fl">64</span>), dense_layer, sigmoid_activation),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ((<span class="fl">64</span>, <span class="fl">10</span>), dense_layer, softmax_activation)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>], datatype<span class="op">=</span><span class="dt">Float32</span>, init_distribution<span class="op">=</span><span class="fu">Normal</span>())</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">OptimizerSetup!</span>(mnist_network, MomentumOptimizer!, learning_rate<span class="op">=</span><span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>Dict{String, Any} with 6 entries:
+  "optimizer"               =&gt; MomentumOptimizer!
+  "weights_momentum_vector" =&gt; [[0.0 0.0 … 0.0 0.0; 0.0 0.0 … 0.0 0.0; … ; 0.0 …
+  "optimizer_name"          =&gt; "MomentumOptimizer!"
+  "learning_rate"           =&gt; 0.01
+  "gamma"                   =&gt; 0.9
+  "biases_momentum_vector"  =&gt; [[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0…</code></pre>
+</div>
+</div>
+<p>Training routine:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>losses <span class="op">=</span> []</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="fl">32</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cross_entropy_loss</span>(x_in, y_val) <span class="op">=</span> <span class="fu">-sum</span>(y_val <span class="op">.*</span> <span class="fu">log</span>.(<span class="fu">Forward</span>(mnist_network, x_in)))</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>epochs</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    batch_idx <span class="op">=</span> <span class="fu">rand</span>((<span class="fl">1</span><span class="op">:</span><span class="fu">size</span>(train_x, <span class="fl">3</span>)), batch_size)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    batch_x <span class="op">=</span> train_x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, batch_idx]</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    batch_y <span class="op">=</span> train_y[batch_idx]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>batch_size</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        x_in <span class="op">=</span> <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, <span class="fu">flatten</span>(batch_x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, i]))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        y_val <span class="op">=</span> <span class="fu">one_hot_encoding</span>(batch_y[i])</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> <span class="fu">Forward</span>(mnist_network, x_in)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> <span class="fu">cross_entropy_loss</span>(x_in, y_val)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">Backward!</span>(mnist_network, cross_entropy_loss, x_in, y_val)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(losses, loss)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sample verification:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>samps <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">1</span><span class="op">:</span><span class="fu">size</span>(test_x, <span class="fl">3</span>), <span class="fl">4</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>test_preds <span class="op">=</span> [</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Forward</span>(mnist_network, <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, <span class="fu">flatten</span>(train_x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, samp]))) for samp <span class="kw">in</span> samps</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> [<span class="fu">findmax</span>(pred)[<span class="fl">2</span>] <span class="op">-</span> <span class="fl">1</span> for pred <span class="kw">in</span> test_preds]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plots <span class="op">=</span> []</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i, pred) <span class="kw">in</span> <span class="fu">enumerate</span>(preds)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> <span class="fu">heatmap</span>(</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        train_x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, samps[i]]<span class="ch">', </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        yflip<span class="op">=</span><span class="cn">true</span>, </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"Target = </span><span class="sc">$</span>(train_y[samps[i]])<span class="st"> | Prediction = </span><span class="sc">$</span>pred<span class="st">"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(plots, temp)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plots<span class="op">...</span>, layout<span class="op">=</span>(<span class="fl">2</span>,<span class="fl">2</span>), size<span class="op">=</span>(<span class="fl">600</span>,<span class="fl">600</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<p><img src="simple-nn_files/figure-html/cell-12-output-1.svg" class="img-fluid"></p>
+</div>
+</div>
+<p>Overall accuracy:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>test_predictions <span class="op">=</span> <span class="fu">argmax</span>.([</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Forward</span>(mnist_network, <span class="fu">convert</span>(<span class="dt">Vector</span>{<span class="dt">Float32</span>}, <span class="fu">flatten</span>(test_x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, <span class="fl">1</span><span class="op">:</span><span class="kw">end</span>, i]))) for i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">size</span>(test_x, <span class="fl">3</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>]) <span class="op">.-</span> <span class="fl">1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>test_correct <span class="op">=</span> test_predictions <span class="op">.==</span> test_y</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Accuracy: </span><span class="sc">$</span>(<span class="fu">round</span>(<span class="fl">100</span> <span class="op">*</span> <span class="fu">sum</span>(test_correct) <span class="op">/</span> <span class="fu">length</span>(test_correct), digits<span class="op">=</span><span class="fl">2</span>))<span class="st">%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy: 90.87%</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
