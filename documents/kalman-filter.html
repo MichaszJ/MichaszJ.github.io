@@ -131,7 +131,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">Random</span>, <span class="bu">LinearAlgebra</span>, <span class="bu">Distributions</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">Random</span>, <span class="bu">LinearAlgebra</span>, <span class="bu">Distributions</span>, <span class="bu">ForwardDiff</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">include</span>(<span class="st">"/Users/michal/Code/scripts/scripts/state_estimation.jl"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This document demonstrates the usage of the generalized regular and unscented Kalman filter algorithms implemented in Julia. The underlying code for the regular and unscented Kalman filter algoirthms can be found at <a href="https://github.com/MichaszJ/scripts/blob/main/scripts/state_estimation.jl">scripts/state_estimation.jl</a>.</p>
@@ -224,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>([x[<span class="fl">1</span>] for x <span class="kw">in</span> xs], label<span class="op">=</span><span class="st">"Filter"</span>)</span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(zs, label<span class="op">=</span><span class="st">"Measurements"</span>, marker<span class="op">=:</span>cross)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="44">
+<div class="cell-output cell-output-display" data-execution_count="122">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="kalman-filter_files/figure-html/cell-4-output-1.svg" class="img-fluid figure-img"></p>
@@ -250,7 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(plot1, plot2, layout<span class="op">=</span>(<span class="fl">1</span>,<span class="fl">2</span>), size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">400</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="123">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="kalman-filter_files/figure-html/cell-5-output-1.svg" class="img-fluid figure-img"></p>
@@ -377,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(time, [vel[<span class="fl">1</span>] for _ <span class="kw">in</span> <span class="fu">eachindex</span>(time)], label<span class="op">=</span><span class="st">"Aircraft Velocity"</span>, linestyle<span class="op">=:</span>dash)</span>
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pos_plot, vel_plot, layout<span class="op">=</span>(<span class="fl">2</span>,<span class="fl">1</span>), size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="125">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="kalman-filter_files/figure-html/cell-7-output-1.svg" class="img-fluid figure-img"></p>
@@ -476,11 +476,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(time, [p[<span class="fl">2</span>] for p <span class="kw">in</span> poss]<span class="op">./</span><span class="fl">1000</span>, label<span class="op">=</span><span class="st">"Aircraft Position"</span>, linestyle<span class="op">=:</span>dash)</span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posx_plot, posy_plot, layout<span class="op">=</span>(<span class="fl">2</span>,<span class="fl">1</span>), size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="127">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="kalman-filter_files/figure-html/cell-9-output-1.svg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">UKF Non-Linear Simulation Results</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="extended-kalman-filter" class="level1">
+<h1>Extended Kalman Filter</h1>
+<p>The extended Kalman filter is another filter that allows for the estimation of non-linear dynamic systems. The extended Kalman filter is similar to the regular filter, except non-linear process and measurement functions, <span class="math inline">\(\textbf f(\textbf x, \textbf u)\)</span> and <span class="math inline">\(\textbf h(\textbf x)\)</span> respectively, are used.</p>
+<p>These functions are defined such that: <span class="math display">\[ \begin{aligned} \bar{\textbf x} &amp;= \textbf F \textbf x + \textbf B \textbf u = \textbf f(\textbf x, \textbf u) \\ \textbf z &amp;= \textbf H \bar{\textbf x} = \textbf h(\bar{\textbf x}) \end{aligned} \]</span></p>
+<p>The state transition matrix <span class="math inline">\(\textbf F\)</span> is calculated as the Jacobian of the process function: <span class="math display">\[ \textbf F = \frac{\partial \textbf f(\textbf x, \textbf u)}{\partial \textbf x} \]</span></p>
+<p>The measurement matrix <span class="math inline">\(\textbf H\)</span> is calculated as the Jacobian of the measurement function: <span class="math display">\[ \textbf H = \frac{\partial \textbf h(\bar{\textbf x})}{\partial \bar{\textbf x}} \]</span></p>
+<p>The Jacobians can be calculated using forward-mode auto-differentiation.</p>
+<section id="simulation-setup-1" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-setup-1">Simulation Setup</h2>
+<p>The previous non-linear example is used with a modified state transition function.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">f_radar_mod</span>(x)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> dt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1</span> dt <span class="fl">0</span> <span class="fl">0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0</span> <span class="fl">1</span> <span class="fl">0</span> <span class="fl">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span> dt</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">*</span> x</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">90.0</span>, <span class="fl">1100.0</span>, <span class="fl">0.0</span>]</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> [</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">300</span><span class="op">^</span><span class="fl">2</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">30</span><span class="op">^</span><span class="fl">2</span> <span class="fl">0</span> <span class="fl">0</span> </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">150</span><span class="op">^</span><span class="fl">2</span> <span class="fl">0</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0</span> <span class="fl">0</span> <span class="fl">0</span> <span class="fl">3</span><span class="op">^</span><span class="fl">2</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> pos <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">1000.0</span>]</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>vel <span class="op">=</span> [<span class="fl">100.0</span>, <span class="fl">0.0</span>]</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>ac_maneuver_ekf <span class="op">=</span> <span class="fu">ExtendedKalmanFilter</span>(x, P, R, Q, f_radar_mod, h_radar);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="fu">collect</span>(dt<span class="op">:</span>dt<span class="op">:</span><span class="fl">360</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>xs, poss, zs <span class="op">=</span> [], [], []</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> time</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> t <span class="op">&gt;=</span> <span class="fl">60</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        vel[<span class="fl">2</span>] <span class="op">=</span> <span class="fl">5</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">update_ac!</span>()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    measure <span class="op">=</span> <span class="fu">noisy_reading</span>()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    ac_maneuver_ekf.state.mean, ac_maneuver_ekf.state.cov <span class="op">=</span> <span class="fu">multivariate_kalman_predict</span>(ac_maneuver_ekf)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    ac_maneuver_ekf.state.mean, ac_maneuver_ekf.state.cov <span class="op">=</span> <span class="fu">multivariate_kalman_update</span>(ac_maneuver_ekf, measure)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(xs, ac_maneuver_ekf.state.mean)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(poss, <span class="fu">copy</span>(pos))</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(zs, measure)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>posx_plot <span class="op">=</span> <span class="fu">plot</span>(time, [x[<span class="fl">1</span>] for x <span class="kw">in</span> xs]<span class="op">./</span><span class="fl">1000</span>, label<span class="op">=</span><span class="st">"Filter"</span>, xlabel<span class="op">=</span><span class="st">"Time (s)"</span>, ylabel<span class="op">=</span><span class="st">"x Position (km)"</span>, legend<span class="op">=:</span>bottomright)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(time, [p[<span class="fl">1</span>] for p <span class="kw">in</span> poss]<span class="op">./</span><span class="fl">1000</span>, label<span class="op">=</span><span class="st">"Aircraft Position"</span>, linestyle<span class="op">=:</span>dash)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>posy_plot <span class="op">=</span> <span class="fu">plot</span>(time, [x[<span class="fl">3</span>] for x <span class="kw">in</span> xs]<span class="op">./</span><span class="fl">1000</span>, label<span class="op">=</span><span class="st">"Filter"</span>, xlabel<span class="op">=</span><span class="st">"Time (s)"</span>, ylabel<span class="op">=</span><span class="st">"y Position (m)"</span>, legend<span class="op">=:</span>bottomright)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(time, [p[<span class="fl">2</span>] for p <span class="kw">in</span> poss]<span class="op">./</span><span class="fl">1000</span>, label<span class="op">=</span><span class="st">"Aircraft Position"</span>, linestyle<span class="op">=:</span>dash)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(posx_plot, posy_plot, layout<span class="op">=</span>(<span class="fl">2</span>,<span class="fl">1</span>), size<span class="op">=</span>(<span class="fl">800</span>,<span class="fl">500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="129">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="kalman-filter_files/figure-html/cell-11-output-1.svg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">EKF Simulation Results</figcaption><p></p>
 </figure>
 </div>
 </div>
