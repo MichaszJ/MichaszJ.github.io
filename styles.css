@@ -84,7 +84,7 @@ body {
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 850px) {
   .padded-block {
     padding: 5% 5% 2% 5%;
   }
@@ -103,6 +103,15 @@ body {
 
   .project-row {
     flex-direction: column;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 75vw !important;
+  }
+
+  .top-block img {
+    margin-top: 5%;
   }
 }
 
@@ -191,7 +200,7 @@ p a {
 .projects-grid {
   display: grid;
   width: 100%;
-  grid-template-columns: 30vw 30vw;
+  grid-template-columns: 35vw 35vw;
   gap: 2% 2%;
   justify-content: center;
 }
