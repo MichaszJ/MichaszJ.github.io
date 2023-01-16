@@ -1,10 +1,11 @@
 :root {
   --var-bg-dark: #08313a;
+  --var-hover-dark: #0c4855;
   --var-highlight-dark: #00e6b8;
   --var-text-dark: #d5dcd8;
 
   --color-bg: var(--var-bg-dark);
-  --color-hover-anim: var(--var-base02);
+  --color-hover-anim: var(--var-hover-dark);
   --color-text: var(--var-text-dark);
   --color-highlight: var(--var-highlight-dark);
 }
