@@ -8,7 +8,7 @@
   --color-hover-anim: var(--var-hover-dark);
   --color-text: var(--var-text-dark);
   /* --color-highlight: var(--var-highlight-dark); */
-  --color-highlight: #537fe7;
+  --color-highlight: #f67280;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -47,7 +47,7 @@ body {
 
   /* font-family: "Inter", sans-serif; */
   font-family: "Cormorant Garamond", serif;
-  color: #2c3333;
+  color: #355c7d;
   margin: 0;
 }
 
@@ -114,7 +114,15 @@ body {
 
 p a {
   color: var(--color-highlight);
+  text-decoration: none;
+
+  border-bottom: solid 1px rgba(255, 255, 255, 0);
   /* color: #0e8388; */
+}
+
+p a:hover {
+  border-bottom: solid 1px var(--color-highlight);
+  transition: border 0.15s ease-in 100ms;
 }
 
 .top-block {
@@ -211,14 +219,15 @@ p a {
 }
 
 .card-title {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 300;
   margin-bottom: 2%;
   color: var(--color-highlight);
 }
 
 .card-description {
-  font-weight: 300;
+  /* font-weight: 300; */
+  font-size: 1.15rem;
 }
 
 .tech-row {
@@ -229,8 +238,9 @@ p a {
 
 .tech-item {
   margin: 0;
-  border: 2px solid var(--color-highlight);
+  border: 1px solid var(--color-highlight);
   border-radius: 5px;
   padding: 3px;
+  font-family: monospace;
   color: var(--color-highlight);
 }
