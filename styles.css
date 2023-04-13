@@ -202,14 +202,14 @@ p a:hover {
   border-radius: 5px;
   padding: 2%;
   width: 95%;
-  transition: border 0.15s ease-in 100ms;
+  transition: background-color 0.15s ease-in 100ms;
 }
 
 .project-card:hover {
   /* background-color: var(--color-hover-anim); */
-  /* background-color: #b5c1e1; */
-  border: 5px solid var(--color-highlight);
-  transition: border 0.15s ease-in 100ms;
+  background-color: #d9fcee;
+  /* border: 5px solid var(--color-highlight); */
+  transition: background-color 0.15s ease-in 100ms;
 }
 
 .project-card img {
@@ -243,4 +243,18 @@ p a:hover {
   padding: 3px;
   font-family: monospace;
   color: var(--color-highlight);
+}
+
+.highlight {
+  background-color: #b3f9dd;
+}
+
+.highlight a {
+  text-decoration: underline;
+  color: #158a5b;
+}
+
+.highlight a:hover {
+  border-bottom: none;
+  /* transition: border 0.15s ease-in 100ms; */
 }
