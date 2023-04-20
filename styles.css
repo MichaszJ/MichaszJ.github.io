@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&display=swap");
+
 :root {
   --var-bg-dark: #08313a;
   --var-hover-dark: #0c4855;
@@ -53,7 +55,7 @@ body {
 
 @media only screen and (min-width: 800px) {
   .padded-block {
-    padding: 5% 25% 2% 25%;
+    padding: 5% 20% 2% 20%;
   }
 
   .project-block {
@@ -246,7 +248,7 @@ p a:hover {
 }
 
 .highlight {
-  background-color: #b3f9dd;
+  background-color: #d3ffee;
 }
 
 .highlight a {
@@ -256,5 +258,39 @@ p a:hover {
 
 .highlight a:hover {
   border-bottom: none;
-  /* transition: border 0.15s ease-in 100ms; */
+}
+
+.resume-body {
+  font-size: larger;
+}
+
+.resume-body h1 {
+  margin-bottom: 0;
+}
+
+.spaced-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.spaced-title p {
+  margin-bottom: 0;
+}
+
+tr {
+  border-bottom: 2px solid #000000;
+}
+
+tr:nth-child(even) {
+  background-color: #e4fbf2;
+}
+
+#resume-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
 }
