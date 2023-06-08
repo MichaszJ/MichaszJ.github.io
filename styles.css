@@ -295,3 +295,7 @@ tr:nth-child(even) {
   margin-bottom: 0;
   text-align: center;
 }
+
+.important-note {
+  font-size: 2rem !important;
+}
