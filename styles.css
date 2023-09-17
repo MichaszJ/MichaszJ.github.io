@@ -51,7 +51,8 @@ body {
 
   /* font-family: "Inter", sans-serif; */
   /* font-family: "Cormorant Garamond", serif; */
-  font-family: 'Iosevka Aile Light';
+  font-family: 'Iosevka Aile Web' !important;
+  font-weight: 300 !important;
   color: #252A34;
   margin: 0;
 }
@@ -250,7 +251,7 @@ p a:hover {
   border-radius: 5px;
   padding: 3px;
   /* font-family: monospace; */
-  font-family: 'Iosevka Light';
+  font-family: 'Iosevka Web';
   color: var(--color-highlight);
   font-size: 0.8rem;
 }
